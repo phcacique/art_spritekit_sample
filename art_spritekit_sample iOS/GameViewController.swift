@@ -7,37 +7,22 @@
 
 import UIKit
 import SpriteKit
-import GameplayKit
+import art
 
 class GameViewController: UIViewController {
 
-    override func viewDidLoad() {
+    var scene: Canvas2D = Canvas()
+    
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        
-        let scene = GameScene.newGameScene()
-
-        // Present the scene
-        let skView = self.view as! SKView
-        skView.presentScene(scene)
-        
-        skView.ignoresSiblingOrder = true
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+        setup()
     }
-
-    override var shouldAutorotate: Bool {
-        return true
-    }
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
+    
+    func setup(){
+        let view: SKView = SKView()
+        scene.scaleMode = .resizeFill
+        view.presentScene(scene)
+        view.showsNodeCount = false
+        self.view = view
     }
 }
